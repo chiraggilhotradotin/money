@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('customers', function (Blueprint $table) {
             $table->id();
             $table->string('uuid')->unique();
-            $table->string('google_id')->nullable();
-            $table->string('facebook_id')->nullable();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('image');
-            $table->rememberToken();
+            $table->unsignedBigInteger("user_id");
+            $table->foreign("user_id")->references("id")->on("users");
+            $table->unsignedBigInteger("customer_user_id")->nullable();
+            $table->string("name");
+            $table->integer("balance")->default(0);
+            $table->boolean("isDeleted")->default(0);
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('customers');
     }
 };
