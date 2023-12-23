@@ -6,7 +6,7 @@
                 @csrf
                 <div>
                     <label for="amount">Amount</label>
-                    <input type="number" name="amount" id="amount" required class="form-control">
+                    <input type="number" step="any" name="amount" id="amount" required class="form-control">
                 </div>
                 <div class="mt-3">
                     <label for="description">Description</label>

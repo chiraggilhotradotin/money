@@ -14,7 +14,7 @@
                 </div>
                 <div class="mt-3">
                     <label for="amount">Amount</label>
-                    <input type="number" name="amount" id="amount" class="form-control">
+                    <input type="number" name="amount" step="any" id="amount" class="form-control">
                 </div>
                 <div class="mt-4">
                     <input type="submit" class="w-100 btn btn-primary" value="Add">

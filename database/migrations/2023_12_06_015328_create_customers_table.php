@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreign("user_id")->references("id")->on("users");
             $table->unsignedBigInteger("customer_user_id")->nullable();
             $table->string("name");
-            $table->integer("balance")->default(0);
+            $table->double("balance",8,2)->default(0);
             $table->boolean("isDeleted")->default(0);
             $table->timestamps();
         });

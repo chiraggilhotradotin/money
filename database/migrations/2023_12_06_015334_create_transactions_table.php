@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreign("user_id")->references("id")->on("users");
             $table->unsignedBigInteger("customer_id");
             $table->foreign("customer_id")->references("id")->on("customers");
-            $table->integer("amount");
+            $table->double("amount",8,2);
             $table->string("description");
             $table->boolean("isApproved")->default(0);
             $table->boolean("isDeleted")->default(0);
