@@ -34,7 +34,7 @@ class TransactionController extends Controller
         $transaction = Transaction::where(['uuid' => $transaction_uuid, 'isDeleted' => 0])->firstOrFail();
         $customer = Customer::where(['uuid' => $customer_uuid, 'isDeleted' => 0])->firstOrFail();
         if ($request->isMethod("POST")) {
-            $changed_amount = $customer->amount - $request->amount;
+            $changed_amount = $transaction->amount - $request->amount;
             $transaction->amount = $request->amount;
             $transaction->description = $request->description;
             $transaction->save();
