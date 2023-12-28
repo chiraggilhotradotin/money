@@ -7,13 +7,18 @@
             <th>S. No.</th>
             <th>Description</th>
             <th>Amount</th>
+            <th>Balance</th>
             <th>Actions</th>
         </tr>
+        @php
+        $balance = $customer->balance;
+        @endphp
         @foreach ($transactions as $transaction)
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $transaction->description }}</td>
                 <td>{{ $transaction->amount }}</td>
+                <td>{{ $balance-$transaction->amount }}</td>
                 @if ($customer->user_id == auth()->user()->id)
                     @if ($transaction->isApproved)
                         <td><a href="{{ route('transactions.edit', [$customer->uuid, $transaction->uuid]) }}">Edit</a> | <a
