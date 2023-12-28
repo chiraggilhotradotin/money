@@ -39,7 +39,7 @@ class TransactionController extends Controller
             $transaction->description = $request->description;
             $transaction->save();
             if ($transaction->isApproved == 1) {
-                $customer->balance = -$changed_amount;
+                $customer->balance = $customer->balance - $changed_amount;
                 $customer->save();
             }
             return redirect()->route("customers.show", $customer_uuid);
