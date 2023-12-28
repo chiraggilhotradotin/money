@@ -11,22 +11,22 @@
             <th>Actions</th>
         </tr>
         @php
-        $balance = $customer->balance;
+            $balance = $customer->balance;
         @endphp
         @foreach ($transactions as $transaction)
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $transaction->description }}</td>
                 <td>{{ $transaction->amount }}</td>
-                <td>{{ $balance-$transaction->amount }}</td>
+                <td>{{ $balance -= $transaction->amount }}</td>
                 @if ($customer->user_id == auth()->user()->id)
                     @if ($transaction->isApproved)
                         <td><a href="{{ route('transactions.edit', [$customer->uuid, $transaction->uuid]) }}">Edit</a> | <a
                                 href="{{ route('transactions.delete', [$customer->uuid, $transaction->uuid]) }}">Delete</a>
                         </td>
                     @else
-                        <td><a href="{{ route('transactions.approve', [$customer->uuid, $transaction->uuid]) }}">Approve</a> | <a
-                                href="{{ route('transactions.delete', [$customer->uuid, $transaction->uuid]) }}">Delete</a>
+                        <td><a href="{{ route('transactions.approve', [$customer->uuid, $transaction->uuid]) }}">Approve</a>
+                            | <a href="{{ route('transactions.delete', [$customer->uuid, $transaction->uuid]) }}">Delete</a>
                         </td>
                     @endif
                 @else
