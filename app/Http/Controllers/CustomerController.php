@@ -12,7 +12,7 @@ class CustomerController extends Controller
 {
     function index()
     {
-        $customers = Customer::where(['user_id' => auth()->user()->id, 'isDeleted' => 0])->get();
+        $customers = Customer::where(['user_id' => auth()->user()->id, 'isDeleted' => 0])->orderBy('id', 'DESC')->paginate(10);
         return view('customers.index', ['customers' => $customers]);
     }
     function add(Request $request)
