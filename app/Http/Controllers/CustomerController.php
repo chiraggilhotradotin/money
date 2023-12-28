@@ -12,7 +12,7 @@ class CustomerController extends Controller
 {
     function index()
     {
-        $customers = Customer::where(['user_id' => auth()->user()->id, 'isDeleted' => 0])->orderBy('id', 'DESC')->paginate(10);
+        $customers = Customer::where(['user_id' => auth()->user()->id, 'isDeleted' => 0])->get();
         return view('customers.index', ['customers' => $customers]);
     }
     function add(Request $request)
@@ -49,7 +49,7 @@ class CustomerController extends Controller
     function show($customer_uuid)
     {
         $customer = Customer::where(['uuid' => $customer_uuid, 'isDeleted' => 0])->firstOrFail();
-        $transactions = Transaction::where(['customer_id' => $customer->id, 'isDeleted' => 0])->get();
+        $transactions = Transaction::where(['customer_id' => $customer->id, 'isDeleted' => 0])->orderBy('id', 'DESC')->paginate(10);
         return view('transactions.index', ['customer' => $customer, 'transactions' => $transactions]);
     }
     function delete($customer_uuid)
